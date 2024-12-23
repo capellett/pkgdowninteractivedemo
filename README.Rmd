@@ -1,0 +1,95 @@
+---
+title: "README"
+output: html_document
+---
+
+# pkgdowninteractivedemo
+
+Demonstrations of interactive webpages built using pkgdown and other R packages. The purpose is to demonstrate ways of making R package data accessible to non-R-users through github websites built using pkgdown.
+
+I've made dozens of little R packages for different projects I've worked on and datasets I've worked with over the years. R packages like `tidyverse`, `devtools`, `usethis`, `roxygen2`, `testthat`, and `pkgdown` have made package development and documentation accessible to a part-time R-programmer like me. Using standard R package development workflows, I benefit from a variety of automated tools and well-reasoned conventions. This elevates my *ad hoc* scripts to more robust software, improving the quality and reproducibility of my work. Sharing my R packages with other R users is easy. It is up to them, really, they just need to use the `install_github()` function, which is available from several different R packages (`remotes`, `devtools`, `ghit`).
+
+```{r eval=F}
+### Install remotes if you need to 
+# install.packages('remotes')
+remotes::install_github('capellett/pkgdowninteractivedemo')
+```
+
+However, in their early versions, my R packages have not been easily accessible to people who aren't comfortable using the R programming language. This repository is intended to showcase several ways of making complex datasets accessible to the average layperson using `pkgdown` and other R packages. The crux of the matter, it seems to me, is to provide a means of navigating through the data to find the information relevant to the user. There are many ways to do this, and I've demonstrated some examples below. Let me know if you have a better way!
+
+# Sharing package data with non-R-users
+
+## download buttons
+A download button is the simplest way, I think. If we can assume that the user can easily navigate a .csv or .xlsx file, then we can simply provide an option to download. Sure, if the package is in a version control repository, then the user could always download a data file directly from the repository. But we want our pkgdown websites to be easy to use, and lots of folks aren't familiar with version control repositories.
+
+### .csv file
+```{r}
+## download csv
+
+```
+
+### .xlsx file
+```{r}
+## download excel, formatted
+
+```
+
+### multiple files
+```{r}
+
+```
+
+### .zip file
+```{r}
+
+```
+
+## crosstalk
+Maybe you want to give users the opportunity to filter the data before downloading. We can use the `crosstalk` package to do that.
+
+```{r}
+
+```
+
+## DT
+You might want to let the users view the data before they download it. The `DT` package can be great for this, and it works with crosstalk.
+
+```{r}
+
+```
+
+# Interactive visualizations
+Maybe we want to go further than a downloadable data table. For larger datasets with more complex information, graphics can be much more informative than tables. The users might not know what data they want until they can see what data we can provide, and many people (myself included) are not interested in looking over a data table with more than a couple dozen rows. So, granted that we want some plots, here are several ways of rendering them for use in a pkgdown website.
+
+## pre-rendered plots
+One way to include plots in a pkgdown website is to pre-render them. The pre-rendered images can be linked to rows in a table, as demonstrated below. 
+
+```{r eval=F}
+
+```
+
+
+```{r}
+
+```
+
+
+
+## htmlWidgets
+A datatable made using the `DT` package is a kind of interactive html widget, and there are other kinds which we can use for plots (`plotly`) and maps (`leaflet`).
+
+### plotly
+
+### leaflet
+
+## Shiny apps
+Typically, if I want to share a complex analysis with a non-R-user, I would make a shiny app. Shiny apps offer a lot of flexibility, but 
+
+### embedded
+Shiny apps that are hosted on a shiny server can be embedded in to a static website.
+
+### shinylive
+Some shiny apps can be converted to static websites using the `shinylive` package. That means the app operates on the client-side web-browser, and it does not require a shiny-server to host.
+
+### roxy.shinylive
+The `roxy.shinylive` package streamlines the process of embedding shinylive apps in to R package documentation.
